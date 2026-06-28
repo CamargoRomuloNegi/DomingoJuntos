@@ -1,44 +1,20 @@
-import { FiscalDocument, ParseResult } from '@/domain/models/FiscalDocument';
-import { ParserNFe } from './ParserNFe';
-import { ParserCTe } from './ParserCTe';
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-export class ParserFactory {
-  /**
-   * Parses the XML content based on the detected document type.
-   */
-  static parse(xmlContent: string, type: 'NFE' | 'CTE' | 'NFSE' | 'UNKNOWN', filename: string): ParseResult {
-    try {
-      switch (type) {
-        case 'NFE': {
-          const parser = new ParserNFe();
-          return parser.parse(xmlContent);
-        }
-        case 'CTE': {
-          const parser = new ParserCTe();
-          return parser.parse(xmlContent);
-        }
-        case 'NFSE':
-          // Placeholder for NFSe parser
-          return {
-            document: null,
-            success: false,
-            logs: [{ level: 'ERROR', category: 'PARSE', message: `Parser para NFS-e ainda não implementado. Arquivo: ${filename}` }],
-          };
-        case 'UNKNOWN':
-        default:
-          return {
-            document: null,
-            success: false,
-            logs: [{ level: 'ERROR', category: 'PARSE', message: `Tipo de documento desconhecido ou não suportado. Arquivo: ${filename}` }],
-          };
-      }
-    } catch (error) {
-      console.error(`Error parsing document ${filename}:`, error);
-      return {
-        document: null,
-        success: false,
-        logs: [{ level: 'FATAL', category: 'PARSE', message: `Erro fatal ao processar o arquivo ${filename}: ${error instanceof Error ? error.message : 'Erro desconhecido'}` }],
-      };
-    }
-  }
-}
+# Run and deploy your AI Studio app
+
+This contains everything you need to run your app locally.
+
+View your app in AI Studio: https://ai.studio/apps/5cd09327-ab4c-4b24-8c48-a9965cdb5808
+
+## Run Locally
+
+**Prerequisites:**  Node.js
+
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
